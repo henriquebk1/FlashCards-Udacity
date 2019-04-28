@@ -1,20 +1,19 @@
-import { Notifications, Permissions } from 'expo';
-import { AsyncStorage } from 'react-native';
+import {Notifications, Permissions} from 'expo';
+import {AsyncStorage} from 'react-native';
+
 const NOTIFICATION_KEY = 'FlashCards:notification';
 
-function createNotification () {
-    return {
-        title: 'Udacity Flashcards',
-        body: "👋 Don't forget to train more!",
-        ios: {
-            vibrate: true,
-        },
-        android: {
-            priority: 'high',
-            vibrate: true,
-        }
+const notificationProps = {
+    title: 'Udacity Flashcards',
+    body: "👋 Don't forget to train more!",
+    ios: {
+        vibrate: true,
+    },
+    android: {
+        priority: 'high',
+        vibrate: true,
     }
-}
+};
 
 export function setDailyNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
@@ -22,7 +21,7 @@ export function setDailyNotification() {
         .then((data) => {
             if (data === null) {
                 Permissions.askAsync(Permissions.NOTIFICATIONS)
-                    .then(({ status }) => {
+                    .then(({status}) => {
                         if (status === 'granted') {
                             Notifications.cancelAllScheduledNotificationsAsync();
 
@@ -32,7 +31,7 @@ export function setDailyNotification() {
                             dt.setMinutes(30);
 
                             Notifications.scheduleLocalNotificationAsync(
-                                createNotification(),
+                                notificationProps,
                                 {
                                     time: dt,
                                     repeat: 'day',

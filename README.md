@@ -12,3 +12,5 @@ yarn start
 ```
 After the browser will be opened with more instructions.
 
+*The app was tested only in Android
+

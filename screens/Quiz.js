@@ -3,8 +3,7 @@ import {MyText, MyView} from "../components/MyComponents";
 import Question from "../components/Question";
 import {connect} from "react-redux";
 import Answer from "../components/Answer";
-import { NavigationActions } from "react-navigation";
-import FlipCard from "react-native-flip-card";
+import {NavigationActions} from "react-navigation";
 
 class Quiz extends React.Component {
     static navigationOptions = {
